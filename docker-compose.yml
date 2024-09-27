@@ -9,6 +9,7 @@ services:
       DATABASE_URL: postgres://user:password@db:5432/mydb
     volumes:
       - ./uploads:/usr/src/app/uploads
+    command: sh -c "npm run build && npm run start"
 
   db:
     image: postgres
@@ -20,13 +21,6 @@ services:
       - postgres_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
-
-  frontend:
-    build: ./image-uploader-frontend
-    ports:
-      - "4200:80"
-    depends_on:
-      - app
 
 volumes:
   postgres_data:
