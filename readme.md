@@ -13,7 +13,8 @@ Esta é uma API RESTful para gerenciar o upload, download e manipulação de ima
 https://hub.docker.com/repository/docker/pedroubine/media-server/general
 
 ## Banco de dados
-Antes de começar a utilizar a aplicação favor rodar o camando no banco
+Antes de começar a utilizar a aplicação favor rodar o comando no banco
+
 ```sql
     CREATE TABLE media (
     id SERIAL PRIMARY KEY,
