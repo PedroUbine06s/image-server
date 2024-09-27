@@ -7,77 +7,64 @@ Esta é uma API RESTful para gerenciar o upload, download e manipulação de ima
 - Node.js
 - Express
 - PostgreSQL
-- Multer
-
-## Instalação
-
-1. Clone o repositório:
-    ```bash
-    git clone https://github.com/seu-usuario/seu-repositorio.git
-    ```
-
-2. Instale as dependências:
-    ```bash
-    cd seu-repositorio
-    npm install
-    ```
-
-3. Configure o banco de dados PostgreSQL e atualize as credenciais no arquivo `.env`:
-    ```
-    DB_HOST=localhost
-    DB_USER=seu-usuario
-    DB_PASSWORD=sua-senha
-    DB_NAME=nome-do-banco
-    ```
-
-4. Execute as migrações do banco de dados:
-    ```bash
-    npx sequelize-cli db:migrate
-    ```
-
-5. Inicie o servidor:
-    ```bash
-    npm start
-    ```
+- Multer(middleware para upload de arquivos)
 
 ## Endpoints
 
-### Upload de Imagem/Vídeo
+### 1. Upload de Mídia
 
-- **URL:** `/upload`
+- **URL:** `/media`
 - **Método:** `POST`
 - **Descrição:** Faz o upload de uma imagem ou vídeo.
 - **Headers:**
-  - `Content-Type: multipart/form-data`
+    - `Content-Type: multipart/form-data`
 - **Body:**
-  - `file`: Arquivo de imagem ou vídeo.
+    - `media`: Arquivo de imagem ou vídeo.
+- **Resposta de Sucesso:**
+    - **Código:** 201 CREATED
+    - **Conteúdo:** `{ "id": "12345", "filename": "exemplo.jpg", "url": "/media/12345" }`
 
-### Listar Imagens/Vídeos
+### 2. Listar Mídias
 
-- **URL:** `/files`
+- **URL:** `/media`
 - **Método:** `GET`
-- **Descrição:** Lista todos os arquivos de imagem e vídeo.
+- **Descrição:** Lista todos os arquivos de mídia.
+- **Resposta de Sucesso:**
+    - **Código:** 200 OK
+    - **Conteúdo:** `[{ "id": "12345", "filename": "exemplo.jpg", "url": "/media/12345" }, ...]`
 
-### Obter Imagem/Vídeo
+### 3. Obter Mídia Específica
 
-- **URL:** `/files/:id`
+- **URL:** `/media/:id`
 - **Método:** `GET`
-- **Descrição:** Obtém uma imagem ou vídeo específico pelo ID.
+- **Descrição:** Obtém uma mídia específica pelo ID.
+- **Parâmetros de URL:**
+    - `id`: ID da mídia
+- **Resposta de Sucesso:**
+    - **Código:** 200 OK
+    - **Conteúdo:** Arquivo de mídia
 
-### Atualizar Imagem/Vídeo
+### 4. Atualizar Mídia
 
-- **URL:** `/files/:id`
+- **URL:** `/media/:id`
 - **Método:** `PUT`
-- **Descrição:** Atualiza uma imagem ou vídeo específico pelo ID.
+- **Descrição:** Atualiza uma mídia específica pelo ID.
 - **Headers:**
-  - `Content-Type: multipart/form-data`
+    - `Content-Type: multipart/form-data`
+- **Parâmetros de URL:**
+    - `id`: ID da mídia
 - **Body:**
-  - `file`: Novo arquivo de imagem ou vídeo.
+    - `media`: Novo arquivo de mídia
+- **Resposta de Sucesso:**
+    - **Código:** 200 OK
+    - **Conteúdo:** `{ "id": "12345", "filename": "atualizado.jpg", "url": "/media/12345" }`
 
-### Deletar Imagem/Vídeo
+### 5. Deletar Mídia
 
-- **URL:** `/files/:id`
+- **URL:** `/media/:id`
 - **Método:** `DELETE`
-- **Descrição:** Deleta uma imagem ou vídeo específico pelo ID.
-
-## Estrutura do Projeto
+- **Descrição:** Deleta uma mídia específica pelo ID.
+- **Parâmetros de URL:**
+    - `id`: ID da mídia
+- **Resposta de Sucesso:**
+    - **Código:** 204 NO CONTENT
