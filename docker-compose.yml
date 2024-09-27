@@ -1,4 +1,3 @@
-version: '3.8'
 services:
   app:
     build: .
@@ -10,7 +9,7 @@ services:
       DATABASE_URL: postgres://user:password@db:5432/mydb
 
   db:
-    image: postgres:13
+    image: postgres
     environment:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password
