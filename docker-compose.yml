@@ -8,8 +8,8 @@ services:
     environment:
       DATABASE_URL: postgres://user:password@db:5432/mydb
     volumes:
-      - ./src:/usr/src/app/src
-    command: npm run dev
+      - ./uploads:/usr/src/app/uploads
+    command: sh -c "npm run build && npm run start"
 
   db:
     image: postgres
