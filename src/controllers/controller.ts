@@ -8,7 +8,7 @@ export class MediaController {
     async uploadMedia(req: Request, res: Response) {
         try {
             if (!req.file) {
-                return res.status(400).json({ message: 'No file uploaded' });
+                return res.status(400).json({ message: 'Nenhum arquivo enviado' });
             }
 
             const { filename, mimetype } = req.file;
@@ -23,7 +23,7 @@ export class MediaController {
             res.status(201).json(media);
         } catch (error) {
             console.error(error);
-            res.status(500).json({ message: 'Error uploading file' });
+            res.status(500).json({ message: 'Erro ao fazer upload do arquivo' });
         }
     }
 
@@ -33,13 +33,13 @@ export class MediaController {
             const media = await mediaService.getMediaById(id);
 
             if (!media) {
-                return res.status(404).json({ message: 'Media not found' });
+                return res.status(404).json({ message: 'Mídia não encontrada' });
             }
 
             res.sendFile(media.path);
         } catch (error) {
             console.error(error);
-            res.status(500).json({ message: 'Error retrieving file' });
+            res.status(500).json({ message: 'Erro ao recuperar o arquivo' });
         }
     }
 
@@ -49,7 +49,7 @@ export class MediaController {
             res.status(200).json(media);
         } catch (error) {
             console.error(error);
-            res.status(500).json({ message: 'Error retrieving media info' });
+            res.status(500).json({ message: 'Erro ao recuperar informações da mídia' });
         }
     }
 
@@ -59,14 +59,14 @@ export class MediaController {
             const media = await mediaService.getMediaById(id);
 
             if (!media) {
-                return res.status(404).json({ message: 'Media não encontrada' });
+                return res.status(404).json({ message: 'Mídia não encontrada' });
             }
 
             const updatedMedia = await mediaService.deleteMedia(id);
-            res.status(200).json({message: 'Media deletada com sucesso'});
+            res.status(200).json({message: 'Mídia deletada com sucesso'});
         } catch (error) {
             console.error(error);
-            res.status(500).json({ message: 'Error deleting media' });
+            res.status(500).json({ message: 'Erro ao deletar mídia' });
         }
     }
 
@@ -76,11 +76,11 @@ export class MediaController {
             const media = await mediaService.getMediaById(id);
 
             if (!media) {
-                return res.status(404).json({ message: 'Media not found' });
+                return res.status(404).json({ message: 'Mídia não encontrada' });
             }
 
             if (!req.file) {
-                return res.status(400).json({ message: 'No file uploaded' });
+                return res.status(400).json({ message: 'Nenhum arquivo enviado' });
             }
 
             const { filename, mimetype } = req.file;
@@ -95,7 +95,7 @@ export class MediaController {
             res.status(200).json(updatedMedia);
         } catch (error) {
             console.error(error);
-            res.status(500).json({ message: 'Error updating media' });
+            res.status(500).json({ message: 'Erro ao atualizar mídia' });
         }
     }
 }
