@@ -9,6 +9,23 @@ Esta é uma API RESTful para gerenciar o upload, download e manipulação de ima
 - PostgreSQL
 - Multer(middleware para upload de arquivos)
 
+## Docker Hub
+https://hub.docker.com/repository/docker/pedroubine/media-server/general
+
+## Banco de dados
+Antes de começar a utilizar a aplicação favor rodar o camando no banco
+```sql
+    CREATE TABLE media (
+    id SERIAL PRIMARY KEY,
+    filename VARCHAR(255) NOT NULL,
+    mimetype VARCHAR(100) NOT NULL,
+    path VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP,
+    deleted BOOLEAN DEFAULT TRUE
+    );
+```
+
 ## Endpoints
 
 ### 1. Upload de Mídia
